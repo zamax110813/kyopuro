@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+using namespace std;
+using Graph=vector<vector<int>>;
+
+vector<bool> seen;
+void dfs(const Graph &G,int v){
+    seen[v]=true;
+    for(auto next_v :G[v]){
+        if(seen[next_v])continue;
+        dfs(G,next_v);
+    }
+}
+
+int main(void){
+    int N,M;
+    cin>>N>>M;
+    Graph G(N);
+    for(int i=0;i<M;i++){
+        int a,b;
+        cin>>a>>b;
+        G[a].push_back(b);
+    }
+
+    seen.assign(N,false);
+    for(int v=0;v<N;v++){
+        if(seen[v]==false)continue;
+        dfs(G,v);
+    }
+}
