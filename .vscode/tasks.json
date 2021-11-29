@@ -28,7 +28,7 @@
             "label": "g++ build active file",
             "command": "/usr/local/bin/g++",
             "args": [
-                "-std=gnu++17",
+                "-std=g++11",
                 "-g",
                 "-Wall",
                 "${file}",
@@ -51,7 +51,7 @@
             "label": "clang++ build active file",
             "command": "clang++",
             "args": [
-                "-std=c++17",
+                "-std=c++11",
                 "-stdlib=libc++",
                 "-x",
                 "c++",
@@ -66,7 +66,7 @@
         {
             "label": "CheckTestCase",
             "type": "shell",
-            "command": "cd ${fileDirname} && rm -f ${fileDirname}/${fileBasenameNoExtension} && g++ -std=gnu++17 ${fileBasename} -o ${fileBasenameNoExtension} && oj test -c \"${fileDirname}/${fileBasenameNoExtension}\" -d ${fileDirname}/tests/",
+            "command": "cd ${fileDirname} && rm -f ${fileDirname}/${fileBasenameNoExtension} && gcc -std=c++17 ${fileBasename} -o ${fileBasenameNoExtension} && oj test -c \"${fileDirname}/${fileBasenameNoExtension}\" -d ${fileDirname}/tests/",
             "presentation": {
                 "reveal": "always",
                 "focus": true,
