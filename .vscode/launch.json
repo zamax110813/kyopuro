@@ -24,6 +24,15 @@
             ],
             "preLaunchTask": "C/C++: g++ アクティブなファイルのビルド",
             "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "(LLDB) Debug",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "args": [],
+            "cwd": "${fileDirname}/",
+            "preLaunchTask": "clang++ build active file",
         }
     ]
 }
