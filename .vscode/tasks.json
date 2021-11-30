@@ -1,88 +1,67 @@
 {
+    "version": "2.0.0",
     "tasks": [
         {
-            "type": "cppbuild",
-            "label": "C/C++: g++ アクティブなファイルのビルド",
-            "command": "/usr/bin/g++",
-            "args": [
-                "-fdiagnostics-color=always",
-                "-g",
-                "${file}",
-                "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
-            ],
+            "label": "test",
+            "type": "shell",
             "options": {
-                "cwd": "${fileDirname}"
+                "shell": {
+                    "executable": "/mnt/c/windows/system32/wsl.exe"
+                }
             },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "detail": "デバッガーによって生成されたタスク。"
+            "command": "g++",
+            "args": [
+                "`wslpath",
+                "'${file}'`",
+                "-o",
+                "`wslpath",
+                "'${fileDirname}\\a.out'`",
+                "&&",
+                "bash",
+                "`wslpath",
+                "'${workspaceFolder}\\cptest.sh'`",
+                "`wslpath",
+                "'${fileDirname}'`"
+            ]
         },
         {
+            "label": "submit",
             "type": "shell",
-            "label": "g++ build active file",
-            "command": "/usr/local/bin/g++",
-            "args": [
-                "-std=g++11",
-                "-g",
-                "-Wall",
-                "${file}",
-                "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
-            ],
             "options": {
-                "cwd": "/usr/local/bin"
+                "shell": {
+                    "executable": "/mnt/c/windows/system32/wsl.exe"
+                }
             },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        },
-        {
-            "type": "shell",
-            "label": "clang++ build active file",
-            "command": "clang++",
+            "command": "bash",
             "args": [
-                "-std=c++11",
-                "-stdlib=libc++",
-                "-x",
-                "c++",
-                "-Wall",
-                "${file}",
+                "`wslpath",
+                "'${workspaceFolder}\\cpsubmit.sh'`",
+                "`wslpath",
+                "'${fileDirname}'`"
+            ]
+        },
+        {
+            "label": "test_submit",
+            "type": "shell",
+            "options": {
+                "shell": {
+                    "executable": "/mnt/c/windows/system32/wsl.exe"
+                }
+            },
+            "command": "g++",
+            "args": [
+                "`wslpath",
+                "'${file}'`",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}",
-                "--debug"
-            ],
-            "group": "build"
-        },
-        {
-            "label": "CheckTestCase",
-            "type": "shell",
-            "command": "cd ${fileDirname} && rm -f ${fileDirname}/${fileBasenameNoExtension} && gcc -std=c++17 ${fileBasename} -o ${fileBasenameNoExtension} && oj test -c \"${fileDirname}/${fileBasenameNoExtension}\" -d ${fileDirname}/tests/",
-            "presentation": {
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-            }
-        },
-        {
-            "label": "SubmitCode",
-            "type": "shell",
-            "command": "cd ${fileDirname} && acc s ${fileBasename}",
-            "presentation": {
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-            }
-        },
-    ],
-    "version": "2.0.0"
+                "`wslpath",
+                "'${fileDirname}\\a.out'`",
+                "&&",
+                "bash",
+                "`wslpath",
+                "'${workspaceFolder}\\test_submit.sh'`",
+                "`wslpath",
+                "'${fileDirname}'`"
+            ]
+        }
+    ]
 }

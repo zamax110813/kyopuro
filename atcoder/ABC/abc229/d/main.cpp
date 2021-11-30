@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define long long ll
+typedef long long ll;
 
 struct UnionFind{
     vector<int> par,siz;
@@ -26,5 +26,24 @@ struct UnionFind{
 };
 
 int main(void){
-    
+    string S;
+    ll K;
+    cin>>S>>K;
+    ll N=S.size();
+    vector<ll> sum(N+1);
+    for(int i=0;i<N;i++){
+        if(S[i]=='.')sum[i+1]=sum[i]+1;
+        else sum[i+1]=sum[i];
+    }
+
+    ll ans=0;
+    ll right=0;
+    for(ll left=0;left<N;left++){
+        while(right+1<=N&&sum[right+1]-sum[left]<=K){
+            right++;
+        }
+        ans=max(ans,right-left);
+    }
+    cout<<ans<<endl;
+    return 0;
 }
