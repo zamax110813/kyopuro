@@ -13,15 +13,13 @@
         },
         {
             "name": "Mac",
-            "includePath": [
-                "${default}"
-            ],
+            "includePath": [],
             "defines": [],
             "macFrameworkPath": [],
-            "compilerPath": "/usr/local/opt/llvm/bin/clang",
+            "compilerPath": "/usr/local/bin/g++-11",
             "cStandard": "c17",
             "cppStandard": "c++20",
-            "intelliSenseMode": "macos-clang-x64"
+            "intelliSenseMode": "${default}"
         }
     ],
     "version": 4
