@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-const ll INF=1LL<<60;
+const ll INF=1LL<<60l;
 
 struct Graph{
     struct Edge{
@@ -70,35 +70,44 @@ struct FordFulkerson{
 };
 
 int main(void){
-    int N,M;
-    cin>>N>>M;
-    vector<vector<ll>> dp(N,vector<ll>(N,INF));
+    int N,M,s,t;
+    cin>>N>>M>>s>>t;
+    --s,--t;
+    Graph G(N);
+    vector<vector<ll>> dist(N,vector<ll>(N,INF));
+    vector<vector<ll>> cap(N,vector<ll>(N,INF));
     for(int i=0;i<M;i++){
-        int a,b;
-        ll w;
-        cin>>a>>b>>w;
-        dp[a][b]=w;
-    }
-    for(int v=0;v<N;v++)dp[v][v]=0;
-    for(int k=0;k<N;k++)
-        for(int i=0;i<N;i++)
-            for(int j=0;j<N;j++)dp[i][j]=min(dp[i][j],dp[i][k]+dp[k][j]);
-    
-    bool exist_negative_cycle=false;
-    for(int v=0;v<N;v++){
-        if(dp[v][v]<0)exist_negative_cycle=true;
+        int u,v,d,c;
+        cin>>u>>v>>d>>c;
+        --u,--v;
+        dist[u][v]=d;
+        cap[u][v]=c;
     }
 
-    if(exist_negative_cycle){
-        cout<<"NEGATIVE CYCLE"<<endl;
-    }else{
+    vector<vector<ll>> dp(N,vector<ll>(N,INF));
+    for(int i=0;i<N;i++){
+        for(int j=0;j<N;j++)dp[i][j]=dist[i][j];
+        dp[i][i]=0;
+    }
+    for(int k=0;k<N;k++){
         for(int i=0;i<N;i++){
             for(int j=0;j<N;j++){
-                if(j)cout<<" ";
-                if(dp[i][j]<INF/2)cout<<dp[i][j];
-                else cout<<"INF";
+                dp[i][j]=min(dp[i][j],dp[i][k]+dp[k][j]);
             }
-            cout<<endl;
         }
     }
+
+    Graph G(N);
+    for(int i=0;i<N;i++){
+        for(int j=0;j<N;j++){
+            if(i==j)continue;
+            if(dp[s][i]+dp[i][j]+dp[j][t]==dp[s][t]){
+                G.addedge(i,j,cap[i][j]);
+            }
+        }
+    }
+
+    FordFulkerson ff;
+    cout<<ff.solve(G,s,t)<<endl;
+
 }

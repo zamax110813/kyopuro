@@ -1,7 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-const ll INF=1LL<<60;
 
 struct Graph{
     struct Edge{
@@ -70,35 +69,15 @@ struct FordFulkerson{
 };
 
 int main(void){
-    int N,M;
-    cin>>N>>M;
-    vector<vector<ll>> dp(N,vector<ll>(N,INF));
-    for(int i=0;i<M;i++){
-        int a,b;
-        ll w;
-        cin>>a>>b>>w;
-        dp[a][b]=w;
-    }
-    for(int v=0;v<N;v++)dp[v][v]=0;
-    for(int k=0;k<N;k++)
-        for(int i=0;i<N;i++)
-            for(int j=0;j<N;j++)dp[i][j]=min(dp[i][j],dp[i][k]+dp[k][j]);
-    
-    bool exist_negative_cycle=false;
-    for(int v=0;v<N;v++){
-        if(dp[v][v]<0)exist_negative_cycle=true;
+    const ll N=1LL<<20;
+    vector<ll> A(N,-1);
+    int Q;
+    cin>>Q;
+    vector<int> t(Q);
+    vector<ll> x(Q);
+    for(int i=0;i<Q;i++){
+        cin>>t[i]>>x[i];
     }
 
-    if(exist_negative_cycle){
-        cout<<"NEGATIVE CYCLE"<<endl;
-    }else{
-        for(int i=0;i<N;i++){
-            for(int j=0;j<N;j++){
-                if(j)cout<<" ";
-                if(dp[i][j]<INF/2)cout<<dp[i][j];
-                else cout<<"INF";
-            }
-            cout<<endl;
-        }
-    }
 }
+
