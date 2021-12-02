@@ -69,42 +69,6 @@ struct FordFulkerson{
 };
 
 int main(void){
-    const ll N=1LL<<20;
-    vector<ll> A(N,-1);
-    int Q;
-    cin>>Q;
-
-    map<int,int> sections;
-    sections[N]=0;
-    for(int i=0;i<Q;i++){
-        int t;
-        ll x;
-        cin>>t>>x;
-        if(t==1){
-            ll h=x%N;
-            auto itr=sections.upper_bound(h);
-            if(itr==end(sections)){
-                itr=sections.begin();
-                A[itr->second]=x;
-                itr->second++;
-                if(itr->first==itr->second)sections.erase(itr);
-            }else{
-                if(itr->second>=h){
-                    A[itr->second]=x;
-                    itr->second++;
-                    if(itr->first==itr->second)sections.erase(itr);
-                }else{
-                    A[h]=x;
-                    int l1=itr->second,r1=h,l2=h+1,r2=itr->first;
-                    sections.erase(itr);
-                    if(l1!=r1)sections[r1]=l1;
-                    if(l2!=r2)sections[r2]=l2;
-                }
-            }
-        }else{
-            cout<<A[x%N]<<endl;
-        }
-    }
-
+    
 }
 
