@@ -68,11 +68,15 @@ struct FordFulkerson{
     }
 };
 
+//順列全探索を使う
+
 int main(void){
     string S;cin>>S;
     sort(S.begin(),S.end());
-    for(int i=0;i<3;i++){
-
-    }
+    set<string> s;
+    do{
+        s.insert(S);
+    }while(next_permutation(S.begin(),S.end()));
+    cout<<s.size()<<endl;
 }
 
