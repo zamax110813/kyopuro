@@ -69,21 +69,21 @@ struct FordFulkerson{
 };
 
 int main(void){
-    int N,K;
-    cin>>N>>K;
-    vector<ll> A(N);
-    for(int i=0;i<N;i++)cin>>A[i];
-    ll left=0,right=1e18/K;
-    while(right-left>1){
-        ll mid=(right+left)/2;
-        ll sum=0;
-        for(int i=0;i<N;i++)sum+=min(A[i],mid);
-        if(sum>=K*mid){
-            left=mid;
-        }else{
-            right=mid;
+    int N;
+    cin>>N;
+    vector<pair<int,int>> pos(N);
+    for(int i=0;i<N;i++)cin>>pos[i].first>>pos[i].second;
+    set<pair<int,int>> magic;
+    for(int i=0;i<N;i++){
+        for(int j=0;j<N;j++){
+            if(i==j)continue;
+            int dx,dy;
+            dx=pos[j].first-pos[i].first;
+            dy=pos[j].second-pos[i].second;
+            int g=gcd(dx,dy);
+            magic.insert(make_pair(dx/g,dy/g));
         }
     }
-    cout<<left<<endl;
+    cout<<magic.size()<<endl;
 }
 

@@ -69,21 +69,10 @@ struct FordFulkerson{
 };
 
 int main(void){
-    int N,K;
-    cin>>N>>K;
-    vector<ll> A(N);
-    for(int i=0;i<N;i++)cin>>A[i];
-    ll left=0,right=1e18/K;
-    while(right-left>1){
-        ll mid=(right+left)/2;
-        ll sum=0;
-        for(int i=0;i<N;i++)sum+=min(A[i],mid);
-        if(sum>=K*mid){
-            left=mid;
-        }else{
-            right=mid;
-        }
+    string S;cin>>S;
+    sort(S.begin(),S.end());
+    for(int i=0;i<3;i++){
+
     }
-    cout<<left<<endl;
 }
 
