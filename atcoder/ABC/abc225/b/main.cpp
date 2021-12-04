@@ -10,8 +10,8 @@ int main(void){
     for(int i=0;i<N-1;i++){
         int a,b;
         cin>>a>>b;
-        G[a].push_back(b);
-        G[b].push_back(a);
+        G[a-1].push_back(b-1);
+        G[b-1].push_back(a-1);
     }
     for(int i=0;i<N;i++){
         if(G[i].size()==N-1){
