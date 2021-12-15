@@ -13,7 +13,9 @@
         },
         {
             "name": "Mac",
-            "includePath": [],
+            "includePath": [
+                "/Users/yutohazama/kyopuro"
+            ],
             "defines": [],
             "macFrameworkPath": [],
             "compilerPath": "/usr/local/bin/gcc",
