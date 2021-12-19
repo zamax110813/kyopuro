@@ -10,9 +10,17 @@ int main(void){
     ll A=0,B=0;
     for(int i=0;i<N.size();i++){
         if(i%2==0){
-            A=A*10+int(N[i]-'0');
+            if(A>B){
+                B=B*10+ll(N[i]-'0');
+            }else{
+                A=A*10+ll(N[i]-'0');
+            }
         }else{
-            B=B*10+int(N[i]-'0');
+            if(A>B){
+                B=B*10+ll(N[i]-'0');
+            }else{
+                A=A*10+ll(N[i]-'0');
+            }
         }
     }
     cout<<A*B<<endl;
