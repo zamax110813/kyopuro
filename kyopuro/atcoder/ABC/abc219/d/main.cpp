@@ -36,5 +36,6 @@ int main(void){
         return 0;
     }else{
         cout<<dp[n][x][y]<<endl;
+        return 0;
     }
 }
