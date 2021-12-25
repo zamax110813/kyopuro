@@ -4,5 +4,6 @@
         "numeric": "cpp",
         "iostream": "cpp",
         "all": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }
