@@ -3,7 +3,9 @@
         "vector": "cpp",
         "numeric": "cpp",
         "iostream": "cpp",
-        "all": "cpp"
+        "all": "cpp",
+        "cmath": "cpp",
+        "complex": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

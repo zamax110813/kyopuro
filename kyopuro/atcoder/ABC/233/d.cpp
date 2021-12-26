@@ -14,14 +14,13 @@ int main(void){
     for(int i=0;i<n;i++){
         sum[i+1]=sum[i]+a[i];
     }
+    map<ll,ll> map;
     int ans=0;
-    for(int l=0;l<n;l++){
-        for(int r=i+1;r<n+1;r++){
-            if(sum[r]==k-sum[l]){
-                ans++;
-            }
-        }
+    for(int r=1;r<n+1;r++){
+        map[sum[r-1]]++;
+        ans+=map[sum[r]-k];
     }
     cout<<ans<<endl;
 
 }
+
