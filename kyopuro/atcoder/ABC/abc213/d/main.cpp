@@ -3,7 +3,7 @@ using namespace std;
 typedef long long ll;
 using Graph=vector<vector<int>>;
 int n;
-Graph G;
+Graph G(200001);
 
 void dfs(int now,int prev=-1){
     if(now!=0)cout<<" ";
@@ -19,7 +19,7 @@ void dfs(int now,int prev=-1){
 
 int main(void){
     cin>>n;
-    for(int i=0;i<n;i++){
+    for(int i=0;i<n-1;i++){
         int a,b;
         cin>>a>>b;
         a--;
