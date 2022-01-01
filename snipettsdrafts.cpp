@@ -1,10 +1,16 @@
-struct fraction{
-    ll p,q;
-    fraction(ll P=0,ll Q=1):p(P),q(Q){}
-    bool operator<(const fraction &other)const{
-        return p*other.q<q*other.p;
+int a;
+cin>>a;
+
+int a,b;
+cin>>a>>b;
+
+rep(i,n)cin>>$1[i];
+
+REP(i,$1){
+    REP(j,$2){
+        int a,b;
+        cin>>a>>b;
+        --a;--b;
+        
     }
-    bool operator<=(const fraction &other)const{
-        return p*other.q<=q*other.p;
-    }
-};
+}
