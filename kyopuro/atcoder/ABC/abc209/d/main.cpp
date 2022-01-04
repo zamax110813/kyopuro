@@ -19,15 +19,36 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 int main(void){
     int n,q;
     cin>>n>>q;
-    vector<vector<int>> path(n);
-    REP(i,n){
+    vector<vector<int>> G(n);
+    REP(i,n-1){
         int a,b;
         cin>>a>>b;
         --a;
         --b;
-        path[a].push_back(b);
-        path[b].push_back(a);
+        G[a].push_back(b);
+        G[b].push_back(a);
     }
-    
-    
+    queue<int> que;
+    vector<int> dist(n,-1);
+    que.push(0);
+    dist[0]=0;
+    while(!que.empty()){
+        int v=que.front();
+        que.pop();
+        for(int x:G[v]){
+            if(dist[x]==-1){
+                que.push(x);
+                dist[x]=dist[v]+1;
+            }
+        }
+    }
+    REP(i,q){
+        int a,b;
+        cin>>a>>b;
+        if(dist[a-1]%2!=dist[b-1]%2){
+            cout<<"Road"<<endl;
+        }else if(dist[a-1]%2==dist[b-1]%2){
+            cout<<"Town"<<endl;
+        }
+    }
 }
