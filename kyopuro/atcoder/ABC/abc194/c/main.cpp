@@ -16,28 +16,35 @@ typedef long long ll;
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
+// int main(void){
+//     int n;
+//     cin>>n;
+//     vector<int> a(n);
+//     REP(i,n)cin>>a[i];
+//     ll sum=0,sum2=0;
+//     REP(i,n){
+//         sum+=a[i];
+//         sum2+=a[i]*a[i];
+//     }
+//     ll ans=n*sum2-sum*sum;
+//     cout << ans << endl;
+// }
+
+//別解
 int main(void){
-    int n;
+    ll n;
     cin>>n;
-    vector<double> l(n),r(n);
-    vector<int> t(n);
+    vector<ll> a(n);
+    REP(i,n)cin>>a[i];
+    vector<ll> cnt(401,0);
     REP(i,n){
-        cin>>t[i]>>l[i]>>r[i];
-        if(t[i]==2||t[i]==4){
-            r[i]-=0.5;
-        }
-        if(t[i]==3||t[i]==4){
-            l[i]+=0.5;
+        cnt[a[i]+200]++;
+    }
+    ll ans=0;
+    REP(i,401){
+        REP(j,401){
+            ans+=cnt[i]*cnt[j]*abs((i-200)-(j-200))*abs((i-200)-(j-200));
         }
     }
-    int ans=0;
-    REP(i,n){
-        FOR(j,i+1,n){
-            if(max(l[i],l[j])<=min(r[i],r[j])){
-                ans++;
-            }
-        }
-    }
-    cout << ans << endl;
-    
+    cout << ans/2 << endl;
 }

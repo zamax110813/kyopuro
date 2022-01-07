@@ -17,27 +17,16 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-    int n;
+    string n;
     cin>>n;
-    vector<double> l(n),r(n);
-    vector<int> t(n);
-    REP(i,n){
-        cin>>t[i]>>l[i]>>r[i];
-        if(t[i]==2||t[i]==4){
-            r[i]-=0.5;
-        }
-        if(t[i]==3||t[i]==4){
-            l[i]+=0.5;
-        }
-    }
+    int digit=n.size();
+    string s=n;
+    s.replace(1,digit-1,digit-1,'9');
     int ans=0;
-    REP(i,n){
-        FOR(j,i+1,n){
-            if(max(l[i],l[j])<=min(r[i],r[j])){
-                ans++;
-            }
-        }
+    if(n==s){
+        ans=(n[0]-'0')+(digit-1)*9;
+    }else{
+        ans=(n[0]-'0')+(digit-1)*9-1;
     }
     cout << ans << endl;
-    
 }
