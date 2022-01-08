@@ -17,15 +17,14 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-    vector<vector<char>> ban(4,vector<char>(4));
-    REP(i,4)REP(j,4)cin>>ban[i][j];
-    REP(i,4){
-        REP(j,4){
-            if(j==3){
-                cout<<ban[3-i][3-j]<<endl;
-            }else{
-                cout<<ban[3-i][3-j]<<" ";
-            }
-        }
+    int n,t;
+    cin>>n>>t;
+    vector<int> a(n);
+    REP(i,n)cin>>a[i];
+    int ans=0;
+    FOR(i,1,n-1){
+        ans+=min(a[i]-a[i-1],t);
     }
+    ans+=t;
+    cout << ans << endl;
 }
