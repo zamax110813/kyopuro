@@ -17,12 +17,13 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-    ll l;
-    cin>>l;
-    ll ans=1;
-    FOR(i,1,11){
-        ans*=(l-i);
-        ans/=i;
+    int n;
+    cin>>n;
+    int niko=0;
+    int ans=0;
+    while(niko+25<=n){
+        ans++;
+        niko+=25;
     }
     cout << ans << endl;
 }

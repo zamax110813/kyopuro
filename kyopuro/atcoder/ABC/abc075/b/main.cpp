@@ -17,12 +17,27 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-    ll l;
-    cin>>l;
-    ll ans=1;
-    FOR(i,1,11){
-        ans*=(l-i);
-        ans/=i;
+    int h,w;
+    cin>>h>>w;
+    vector<string> masu(h);
+    REP(i,h)cin>>masu[i];
+    REP(i,h){
+        REP(j,w){
+            int bomb=0;
+            if(masu[i][j]=='.'){
+                FOR(dx,-1,1){
+                    FOR(dy,-1,1){
+                        if(dx==0&&dy==0)continue;
+                        if(j+dx>=0&&j+dx<w&&i+dy>=0&&i+dy<h){
+                            if(masu[i+dy][j+dx]=='#')bomb++;
+                        }
+                    }
+                }
+                masu[i][j]=char('0'+bomb);
+            }
+        }
     }
-    cout << ans << endl;
+    REP(i,h){
+        cout<<masu[i]<<endl;
+    }
 }

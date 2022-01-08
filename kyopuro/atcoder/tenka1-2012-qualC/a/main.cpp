@@ -17,12 +17,22 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-    ll l;
-    cin>>l;
-    ll ans=1;
-    FOR(i,1,11){
-        ans*=(l-i);
-        ans/=i;
+    int n;
+    cin>>n;
+    vector<bool> prime(100005,true);
+    int ans=0;
+    for(int i=2;i*i<=n;i++){
+        if(prime[i]==true){
+            for(int j=2*i;j<=n;j+=i){
+                prime[j]=false;
+            }
+        }
+    }
+    for(int i=2;i<n;i++){
+        if(prime[i]==true)ans++;
     }
     cout << ans << endl;
+
+
+
 }
