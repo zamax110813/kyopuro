@@ -1,4 +1,6 @@
 #include<bits/stdc++.h>
+#include<atcoder/all>
+using namespace atcoder;
 using namespace std;
 typedef long long ll;
 #define REP(i,n) for(ll i=0;i<(ll)n;i++)
@@ -14,14 +16,23 @@ typedef long long ll;
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
-int func(int x){
-    return x*x+2*x+3;
-}
-
 int main(void){
-    int t;
-    cin>>t;
-    int ans=func(func(func(t)+t)+func(func(t)));
-    cout << ans << endl;
-    
+    int n,k;
+    cin>>n>>k;
+    vector<int> p(n);
+    REP(i,n){
+        cin>>p[i];
+    }
+    priority_queue<int,vector<int>,greater<int>> que;
+    REP(i,k){
+        que.push(p[i]);
+    }
+    cout<<que.top()<<endl;
+    FOR(i,k,n-1){
+        if(p[i]>que.top()){
+            que.pop();
+            que.push(p[i]);
+        }
+        cout<<que.top()<<endl;
+    }
 }

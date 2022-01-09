@@ -1,4 +1,6 @@
 #include<bits/stdc++.h>
+#include<atcoder/all>
+using namespace atcoder;
 using namespace std;
 typedef long long ll;
 #define REP(i,n) for(ll i=0;i<(ll)n;i++)
@@ -14,14 +16,19 @@ typedef long long ll;
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
-int func(int x){
-    return x*x+2*x+3;
-}
-
 int main(void){
-    int t;
-    cin>>t;
-    int ans=func(func(func(t)+t)+func(func(t)));
-    cout << ans << endl;
-    
+    ll k;
+    cin>>k;
+    string ans;
+    while(k>0){
+        ans.push_back((k%2)+'0');  //数値を数字に変換したい場合は+'0',数字を数値に変換したい場合は-'0'
+        k/=2;
+    }
+    reverse(ALL(ans));
+    for(auto &s:ans){
+        if(s=='1'){
+            cout<<2;
+        }else cout<<0;
+    }
+    cout<<endl;
 }

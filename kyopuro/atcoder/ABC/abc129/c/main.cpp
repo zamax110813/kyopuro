@@ -1,4 +1,6 @@
 #include<bits/stdc++.h>
+#include<atcoder/all>
+using namespace atcoder;
 using namespace std;
 typedef long long ll;
 #define REP(i,n) for(ll i=0;i<(ll)n;i++)
@@ -13,15 +15,24 @@ typedef long long ll;
 
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
-
-int func(int x){
-    return x*x+2*x+3;
-}
+using mint=modint1000000007;
 
 int main(void){
-    int t;
-    cin>>t;
-    int ans=func(func(func(t)+t)+func(func(t)));
-    cout << ans << endl;
-    
+    int n,m;
+    cin>>n>>m;
+    vector<bool> broken(n+1,false);
+    REP(i,m){
+        int x;
+        cin>>x;
+        broken[x]=true;
+    }
+    mint dp[100005];
+    dp[0]=1;
+    FOR(i,0,n){
+        FOR(j,1,2){
+            if(!broken[i+j])dp[i+j]+=dp[i];
+        }
+    }
+    cout<<dp[n].val()<<endl;
+
 }
