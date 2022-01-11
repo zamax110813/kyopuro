@@ -17,22 +17,6 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-    int n;
-    string s;
-    cin>>n>>s;
-    ll r=0,g=0,b=0;
-    REP(i,n){
-        if(s[i]=='R')++r;
-        else if(s[i]=='G')++g;
-        else ++b;
-    }
-
-    ll cnt=0;
-    for(int i=0;i<n;++i)for(int j=i+1;j<n;++j){
-        int k=2*j-i;
-        if(k>=n)continue;
-        if(s[i]!=s[j]&&s[j]!=s[k]&&s[k]!=s[i])cnt++;
-    }
-    ll ans=r*g*b-cnt;
-    cout << ans << endl;
+    
 }
+
