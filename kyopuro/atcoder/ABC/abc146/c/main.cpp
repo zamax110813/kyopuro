@@ -16,8 +16,25 @@ typedef long long ll;
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
+ll digit(ll x){
+        ll cnt=0;
+        while(x>0){
+                x/=10;
+                cnt++;
+        }
+        return cnt;
+}
+
 int main(void){
-        
-        
+        int a,b;
+        ll x;
+        cin>>a>>b>>x;
+        ll left=0,right=1000000001;
+        while(right-left>1){
+                ll mid=(left+right)/2;
+                if(a*mid+b*digit(mid)>x)right=mid;
+                else left=mid;
+        }
+        cout<<left<<endl;
 }
 
