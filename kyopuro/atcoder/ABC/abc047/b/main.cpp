@@ -17,7 +17,22 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-        
-        
+        int w,h,n;
+        cin>>w>>h>>n;
+        int y1=0,y2=h,x1=0,x2=w;
+        REP(i,n){
+                int x,y,a;
+                cin>>x>>y>>a;
+                if(a==1)chmax(x1,x);
+                else if(a==2)chmin(x2,x);
+                else if(a==3)chmax(y1,y);
+                else if(a==4)chmin(y2,y);
+        }
+        if(x1>=x2||y1>=y2){
+                cout<<0<<endl;
+                return 0;
+        }else{
+                cout<<(x2-x1)*(y2-y1)<<endl;
+        }
 }
 
