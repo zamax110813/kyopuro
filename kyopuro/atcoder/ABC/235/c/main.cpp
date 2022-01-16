@@ -17,25 +17,30 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-    int n,k,r,s,p;
-    string t;
-    cin>>n>>k>>r>>s>>p>>t;
-    auto score=[&](int i){
-            if(t[i]=='r')return p;
-            else if(t[i]=='s')return r;
-            else return s;
-    };
-    ll ans=0;
-    for(int i=0;i<k;i++){
-            bool last=false;
-            for(int j=i;j<n;j+=k){
-                    if(t[j-k]==t[j]&&last&&j>=k)last=false;
-                    else{
-                            last=true;
-                            ans+=score(j);
-                    }
+    int n,q;
+    cin>>n>>q;
+    vector<int> a(n);
+    REP(i,n)cin>>a[i];
+    map<int,vector<int>> map;
+    REP(i,n){
+            int val=i+1;
+            map[a[i]].push_back(val);
+    }
+    vector<int> ans;
+    REP(i,q){
+            int x,k;
+            cin>>x>>k;
+            k--;
+            auto itr = map.find(x);
+            if(itr != map.end()){
+                    if(itr->second.size()<k+1)ans.push_back(-1);
+                    else ans.push_back(map[x][k]);
+            }else{
+                    ans.push_back(-1);
             }
     }
-    cout << ans << endl;
+    REP(i,q){
+            cout << ans[i] << endl;
+    }
 
 }

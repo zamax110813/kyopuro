@@ -17,25 +17,15 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-    int n,k,r,s,p;
-    string t;
-    cin>>n>>k>>r>>s>>p>>t;
-    auto score=[&](int i){
-            if(t[i]=='r')return p;
-            else if(t[i]=='s')return r;
-            else return s;
-    };
-    ll ans=0;
-    for(int i=0;i<k;i++){
-            bool last=false;
-            for(int j=i;j<n;j+=k){
-                    if(t[j-k]==t[j]&&last&&j>=k)last=false;
-                    else{
-                            last=true;
-                            ans+=score(j);
-                    }
-            }
-    }
-    cout << ans << endl;
-
+        string t; 
+        cin>>t;
+        int ans=0;
+        for(int i=0;i<3;i++){
+                int tmp=0;
+                for(int j=0;j<3;j++){
+                        tmp=tmp*10+(t[(i+j)%3]-'0');
+                }
+                ans+=tmp;
+        }
+        cout << ans << endl;
 }
