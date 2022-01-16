@@ -17,25 +17,6 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-    int n,q;
-    cin>>n>>q;
-    vector<int> a(n);
-    REP(i,n)cin>>a[i];
-    map<int,vector<int>> map;
-    REP(i,n)map[a[i]].push_back(i+1);
-    vector<int> ans;
-    REP(i,q){
-            int x,k;
-            cin>>x>>k;
-            k--;
-            auto itr = map.find(x);
-            if(itr != map.end()){
-                    if(itr->second.size()<k+1)ans.push_back(-1);
-                    else ans.push_back(map[x][k]);
-            }else ans.push_back(-1);
-    }
-    REP(i,q){
-            cout << ans[i] << endl;
-    }
-
+    
 }
+
