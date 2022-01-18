@@ -17,28 +17,5 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-    int n,q;
-    cin>>n>>q;
-    string s;
-    cin>>s;
-    vector<int> ac(n-1,0);
-    REP(i,n-1){
-        if(s[i]=='A'&&s[i+1]=='C'){
-            ac[i]=1;
-        }
-    }
-    vector<int> sum(n+1,0);
-    sum[0]=0;
-    REP(i,n){
-        sum[i+1]=sum[i]+ac[i];
-        if(i==n-1)sum[i+1]=sum[i];
-    }
-    REP(i,q){
-        int l,r;
-        cin>>l>>r;
-        int ans=sum[r-1]-sum[l-1];
-        cout<<ans<<endl;
-    }
 
- }
-
+}
