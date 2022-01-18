@@ -17,20 +17,10 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-   int n;
-   cin>>n;
-   vector<ll> a(n);
-   REP(i,n)cin>>a[i];
-   vector<ll> sum(n+1,0),m(n+1,0);
-   REP(i,n){
-           sum[i+1]=sum[i]+a[i];
-           m[i+1]=max(m[i],sum[i+1]);
-   }
-   ll ans=0,cur=0;
-   REP(i,n){
-           ans=max(ans,cur+m[i+1]);
-           cur+=sum[i+1];
-   }
-   cout<<ans<<endl; 
+    int n,q;
+    cin>>n>>q;
+    string s;
+    cin>s;
+    vector<>
 }
 
