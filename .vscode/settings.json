@@ -16,7 +16,9 @@
         "set": "cpp",
         "span": "cpp",
         "string": "cpp",
-        "string_view": "cpp"
+        "string_view": "cpp",
+        "bitset": "cpp",
+        "limits": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

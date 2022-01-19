@@ -17,10 +17,6 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-        ll n,m;
-        cin>>n>>m;
-        long double sangle=(n%12)*30.0+m*0.5;
-        long double langle=m*6.0;
-        long double sa=abs(langle-sangle);
-        cout<<fixed<<setprecision(20)<<min(sa,360.0-sa)<<endl;
+        
 }
+

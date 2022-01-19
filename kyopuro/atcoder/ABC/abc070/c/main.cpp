@@ -16,11 +16,25 @@ typedef long long ll;
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
-int main(void){
-        ll n,m;
-        cin>>n>>m;
-        long double sangle=(n%12)*30.0+m*0.5;
-        long double langle=m*6.0;
-        long double sa=abs(langle-sangle);
-        cout<<fixed<<setprecision(20)<<min(sa,360.0-sa)<<endl;
+ll gcd(ll a,ll b){
+        if(b==0)return a;
+        else return gcd(b,a%b);
 }
+
+ll lcm(ll a,ll b){
+        ll g=gcd(a,b);
+        return a/g*b;
+}
+
+int main(void){
+        int n;
+        cin>>n;
+        vector<ll> t(n);
+        REP(i,n)cin>>t[i];
+        ll ans=1;
+        REP(i,n){
+                ans=lcm(ans,t[i]);
+        }
+        cout<<ans<<endl;
+}
+
