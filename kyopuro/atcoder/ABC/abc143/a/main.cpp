@@ -17,21 +17,5 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-        ll x;
-        cin>>x;
-        map<ll,ll> map;
-        FOR(i,-1000,1000){
-                map[ll(i*i*i*i*i)]=i;
-        }
-        for(auto v:map){
-                ll b=v.second;
-                ll b5=v.first;
-                if(map.count(x+b5)){
-                        ll a=map[x+b5];
-                        cout<<a<<" "<<b<<endl;
-                        return 0;
-                }
-        }
-
 }
 
