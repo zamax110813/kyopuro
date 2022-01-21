@@ -16,15 +16,32 @@ typedef long long ll;
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
+
 int main(void){
-    int n;
-    cin>>n;
-    n=n%30;
-    vector<int> a(6);
-    REP(i,6)a[i]=i+1;
-    REP(i,n){
-            swap(a[(i%5)],a[(i%5)+1]);
+   ll n,m;
+   ll modnum=1000000000+7;
+   cin>>n>>m;
+    if(abs(n-m)>=2){
+            cout<<0<<endl;
+            return 0;
     }
-    REP(i,6)cout<<a[i];
-    cout<<endl;
+    FORD(i,n-1,1){
+            n*=i;
+            n%=modnum;
+    }
+    FORD(i,m-1,1){
+            m*=i;
+            m%=modnum;
+    }
+    int ans;
+    if(n==m){
+            ans=(2*n*m)%modnum;
+            cout<<ans<<endl;
+            return 0;
+    }else{
+            ans=(n*m)%modnum;
+            cout<<ans<<endl;
+            return 0;
+    }
 }
+

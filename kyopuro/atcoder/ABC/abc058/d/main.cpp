@@ -17,14 +17,6 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-    int n;
-    cin>>n;
-    n=n%30;
-    vector<int> a(6);
-    REP(i,6)a[i]=i+1;
-    REP(i,n){
-            swap(a[(i%5)],a[(i%5)+1]);
-    }
-    REP(i,6)cout<<a[i];
-    cout<<endl;
+    
 }
+
