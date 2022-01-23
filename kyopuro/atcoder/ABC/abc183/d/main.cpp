@@ -16,30 +16,25 @@ typedef long long ll;
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
-
-int num[50][26];
+const int MAX=210000;
 
 int main(void){
-   int n;
-   cin>>n;
-   REP(i,n){
-           	string s;
-			cin>>s;
-			for(char c:s){
-				num[i][c-'a']++;
-			}
-   }
-   string ans="";
-   REP(i,26){
-	   int mi=5000;
-	   REP(j,n){
-		   mi=min(mi,num[j][i]);
-	   }
-	   char c='a'+i;
-	   REP(i,mi)ans+=c;
-   }
-   cout << ans << endl;
-
+    ll n,w;
+    cin>>n>>w;
+    auto solve=[&](){
+            vector<ll> num(MAX+1,0);
+            REP(i,n){
+                    ll s,t,p;
+                    cin>>s>>t>>p;
+                    num[s]+=p,num[t]-=p;
+            }
+            REP(j,MAX){
+                    num[j+1]+=num[j];
+                    if(num[j]>w)return false;
+            }
+            return true;
+    };
+    cout<<(solve()?"Yes":"No")<<endl;
 
 }
 
