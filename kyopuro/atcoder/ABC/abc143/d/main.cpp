@@ -22,6 +22,14 @@ int main(void){
         vector<int> l(n);
         REP(i,n)cin>>l[i];
         sort(ALL(l));
-        
+        int ans=0;
+        for(int i=n-1;i>=0;i--){
+                for(int j=i-1;j>=0;j--){
+                        auto iter=lower_bound(ALL(l),l[i]+l[j]);
+                        int k=distance(iter,l.end());
+                        ans+=n-(i+1)-k;
+                }
+        }
+        cout<<ans<<endl;
 }
 
