@@ -16,27 +16,23 @@ typedef long long ll;
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
-int black[10][10];
-
 int main(void){
-    int h,w,k;
-    cin>>h>>w>>k;
-    vector<string> c(h);
-    REP(i,h)cin>>c[i];
+    int n;
+    cin>>n;
+    vector<ll> diff(n);
+    ll s=0;
+    REP(i,n){
+        ll a,b;
+        cin>>a>>b;
+        s+=a;
+        diff[i]=2*a+b;
+    }
+    sort(ALL(diff),greater<ll>());
     int ans=0;
-    for(int i=0;i<(1<<h);i++){
-        for(int j=0;j<(1<<w);j++){
-            int cnt=0;
-            for(int k=0;k<h;k++){
-                if((i&(1<<k))!=0)continue;
-                for(int l=0;l<w;l++){
-                    if((j&(1<<l))!=0)continue;
-                    if(c[k][l]=='#')cnt++;
-                }
-            }
-            if(cnt==k)ans++;
-        }
+    REP(i,n){
+        s-=diff[i];
+        ans++;
+        if(s<0)break;
     }
     cout << ans << endl;
-
 }
