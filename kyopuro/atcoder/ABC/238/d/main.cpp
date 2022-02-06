@@ -17,5 +17,27 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-    
+    int t;
+    cin>>t;
+    vector<bool> ans(t);
+    REP(i,t){
+        ll a,s;
+        cin>>a>>s;
+        if(s>=2*a){
+            if((a&ll(s-2*a))==0){
+                ans[i]=true;
+            }else{
+                ans[i]=false;
+            }
+        }else{
+            ans[i]=false;
+        }
+    }
+    REP(i,t){
+        if(ans[i]){
+            cout<<"Yes"<<endl;
+        }else{
+            cout<<"No"<<endl;
+        }
+    }
 }

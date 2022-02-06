@@ -16,6 +16,30 @@ typedef long long ll;
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
+using mint=modint998244353;
+
 int main(void){
-    
+    ll n;
+    cin>>n;
+    mint ans=0;
+    ll digit=10;
+    while(1){
+        if(n<digit){
+            if(digit==10){
+                ans+=(n*(n+1))/2;
+                break;
+            }else{
+                ans+=(((n-digit/10+1)%998244353)*((n-digit/10+2)%998244353))/2;
+                break;
+            }
+        }else{
+            if(digit==10){
+                ans+=45;
+            }else{
+                ans+=((digit-(digit/10))%998244353)*((digit-(digit/10)+1)%998244353)/2;
+            }
+            digit*=10;
+        }
+    }
+    cout<<ans.val()<<endl;
 }
