@@ -13,54 +13,28 @@ typedef long long ll;
 
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
-using Graph=vector<vector<int>>
+using Graph=vector<vector<int>>;
 
-//連結成分の個数を数える
-//深さ優先探索を用いる場合
-vector<bool> seen;
-void dfs(const Graph &G,int v){
-    seen[v]=true;
-    for(auto next_v:G[v]){
-        if(seen[next_v])continue;
-        dfs(G,next_v);
-    }
-}
+//二部グラフか判定(BFS)
 
-int main(void){
-    int N,M;
-    cin>>N>>M;
-    Graph G(N);
-    for(int i=0;i<M;i++){
-        int a,b;
-        cin>>a>>b;
-        G[a].push_back(b);
-        G[b].push_back(a);
-    }
-    int ans=0;
-    seen.assign(N,false);
-    for(int v=0;v<N;v++){
-        if(seen[v])continue;
-        dfs(G,v);
-        ans++;
-    }
-    cout<<ans<<endl;
-}
-
-//幅優先探索を用いる場合
-vector<int> dist;
-void BFS(const Graph &G,int s){
+vector<int> color;
+bool BFS(const Graph &G,int s){
     queue<int> que;
-    dist[s]=0;
     que.push(s);
+    color[s]=0;
     while(!que.empty()){
         int v=que.front();
         que.pop();
         for(auto next_v:G[v]){
-            if(dist[next_v]!=-1)continue;
-            dist[next_v]+=dist[v]+1;
+            if(color[next_v]!=-1){
+                if(color[v]==color[next_v])return false;
+                continue;
+            }
+            color[next_v]=1-color[v];
             que.push(next_v);
         }
     }
+    return true;
 }
 
 int main(void){
@@ -73,13 +47,12 @@ int main(void){
         G[a].push_back(b);
         G[b].push_back(a);
     }
-
-    int ans=0;
-    dist.assign(N,-1);
+    color.assign(N,-1);
+    bool is_bipartite=true;
     REP(i,N){
-        if(dist[i]!=-1)continue;
-        BFS(G,i);
-        ans++;
+        if(color[i]!=-1)continue;
+        if(!BFS(G,i))is_bipartite=false;
     }
-    cout<<ans<<endl;
+    if(is_bipartite)cout<<"Yes"<<endl;
+    else cout<<"No"<<endl;
 }

@@ -13,40 +13,10 @@ typedef long long ll;
 
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
-using Graph=vector<vector<int>>
+using Graph=vector<vector<int>>;
 
-//連結成分の個数を数える
-//深さ優先探索を用いる場合
-vector<bool> seen;
-void dfs(const Graph &G,int v){
-    seen[v]=true;
-    for(auto next_v:G[v]){
-        if(seen[next_v])continue;
-        dfs(G,next_v);
-    }
-}
+//s-tパスが存在するかどうか(BFSで)
 
-int main(void){
-    int N,M;
-    cin>>N>>M;
-    Graph G(N);
-    for(int i=0;i<M;i++){
-        int a,b;
-        cin>>a>>b;
-        G[a].push_back(b);
-        G[b].push_back(a);
-    }
-    int ans=0;
-    seen.assign(N,false);
-    for(int v=0;v<N;v++){
-        if(seen[v])continue;
-        dfs(G,v);
-        ans++;
-    }
-    cout<<ans<<endl;
-}
-
-//幅優先探索を用いる場合
 vector<int> dist;
 void BFS(const Graph &G,int s){
     queue<int> que;
@@ -57,15 +27,15 @@ void BFS(const Graph &G,int s){
         que.pop();
         for(auto next_v:G[v]){
             if(dist[next_v]!=-1)continue;
-            dist[next_v]+=dist[v]+1;
             que.push(next_v);
+            dist[next_v]=dist[v]+1;
         }
     }
 }
 
 int main(void){
-    int N,M;
-    cin>>N>>M;
+    int N,M,s,t;
+    cin>>N>>M>>s>>t;
     Graph G(N);
     REP(i,M){
         int a,b;
@@ -73,13 +43,8 @@ int main(void){
         G[a].push_back(b);
         G[b].push_back(a);
     }
-
-    int ans=0;
     dist.assign(N,-1);
-    REP(i,N){
-        if(dist[i]!=-1)continue;
-        BFS(G,i);
-        ans++;
-    }
-    cout<<ans<<endl;
+    BFS(G,s);
+    if(dist[t]!=-1)cout<<"Yes"<<endl;
+    else cout<<"No"<<endl;
 }
