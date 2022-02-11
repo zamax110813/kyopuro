@@ -17,13 +17,13 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-    ll n,a,b,c,d,e;
-    cin>>n>>a>>b>>c>>d>>e;
-    ll ans=1+2+3+4;
-    ans+=ceil(n/a);
-    ans+=ceil(n/b);
-    ans+=ceil(n/c);
-    ans+=ceil(n/d);
-    ans+=ceil(n/e);
-    cout << ans << endl;
+    ll n;
+    cin>>n;
+    vector<ll> A(5);
+    ll min=1LL<<60;
+    REP(i,5){
+        cin>>A[i];
+        chmin(min,A[i]);
+    }
+    cout<<4+((n+min-1)/min)<<endl;
 }

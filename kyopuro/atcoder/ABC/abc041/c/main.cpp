@@ -17,5 +17,17 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-    
+    int n;
+    cin>>n;
+    vector<pair<int,int>> tall(n);
+    REP(i,n){
+        int a;
+        cin>>a;
+        tall[i].F=a;
+        tall[i].S=i+1;
+    }
+    sort(ALL(tall),greater<pair<int,int>>());
+    REP(i,n){
+        cout<<tall[i].S<<endl;
+    }
 }
