@@ -1,4 +1,6 @@
 #include<bits/stdc++.h>
+#include<atcoder/all>
+using namespace atcoder;
 using namespace std;
 typedef long long ll;
 #define REP(i,n) for(ll i=0;i<(ll)n;i++)
@@ -12,21 +14,15 @@ typedef long long ll;
 #define S second
 
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
-template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
-
-void InsertionSort(const vector<int> &a){
-    int N=(int)a.size();
-    for(int i=1;i<N;i++){
-        int v=a[i];
-        int j=i;
-        for(;j>0;--j){
-            if(a[j-1]>v)a[j]=a[j-1];
-            else break;
-        }
-        a[j]=v;
-    }
-}
+template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-    
+    double x1,y1,x2,y2,x3,y3;
+    cin>>x1>>y1>>x2>>y2>>x3>>y3;
+    x1-=x3;
+    x2-=x3;
+    y1-=y3;
+    y2-=y3;
+    double ans=abs(x1*y2-x2*y1)/2;
+    cout <<fixed<<setprecision(3)<< ans << endl;
 }

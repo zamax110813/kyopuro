@@ -14,19 +14,22 @@ typedef long long ll;
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
-void InsertionSort(const vector<int> &a){
-    int N=(int)a.size();
-    for(int i=1;i<N;i++){
-        int v=a[i];
-        int j=i;
-        for(;j>0;--j){
-            if(a[j-1]>v)a[j]=a[j-1];
-            else break;
-        }
-        a[j]=v;
-    }
-}
-
 int main(void){
-    
+    int N,K;
+    cin>>N>>K;
+    priority_queue<int,vector<int>,greater<int>> low;
+    vector<int> a(N);
+    REP(i,N)cin>>a[i];
+    REP(i,N){
+        if(i<K-1)low.push(a[i]);
+        else{
+            int k_smallest=low.top();
+            if(k_smallest>a[i]){
+                low.pop();
+                low.push(a[i]);
+                k_smallest=low.top();
+            }
+            cout<<i<<" : "<<k_smallest<<endl;
+        }
+    }
 }

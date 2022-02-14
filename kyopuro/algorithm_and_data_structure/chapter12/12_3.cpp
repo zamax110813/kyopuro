@@ -14,19 +14,18 @@ typedef long long ll;
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
-void InsertionSort(const vector<int> &a){
-    int N=(int)a.size();
-    for(int i=1;i<N;i++){
-        int v=a[i];
-        int j=i;
-        for(;j>0;--j){
-            if(a[j-1]>v)a[j]=a[j-1];
-            else break;
-        }
-        a[j]=v;
+void QuickSort(const vector<int> &a,int left,int right){
+    if(right-left<=1)return 0;
+    int pivot_index=(right+left)/2;
+    int pivot=a[pivot_index];
+    swap(a[pivot_index],a[right-1]);
+    int i=left;
+    for(int j=left;j<right-1;j++){
+        if(a[j]<a[pivot])swap(a[j],a[i]);
     }
+    swap(a[i],a[right-1]);
+    QuickSort(a,left,i+1);
+    QuickSort(a,i+1,right);
+
 }
 
-int main(void){
-    
-}

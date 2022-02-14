@@ -14,36 +14,35 @@ typedef long long ll;
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
-const int MAX=100000;//配列の値は100000未満とする.
+const int MAX=100000;
 
-//バケットソート
 void BucketSort(vector<int> &a){
     int N=(int)a.size();
     vector<int> num(MAX,0);
-    for(int i=0;i<N;i++){
+    for(int i=0;i<N;++i){
         ++num[a[i]];
     }
-    //numの累積和をとる.
-    //sum[v]:v以下の値の個数.
-    //値a[i]が全体で何番目に小さいかを求める.
     vector<int> sum(MAX,0);
-    for(int v=1;v<MAX;v++){
-        sum[v]=sum[v-1]+num[v];
+    sum[0]=num[0];
+    for(int i=1;i<MAX;++i){
+        sum[i]=sum[i-1]+num[i];
     }
-
-    //sumをもとにソート処理
-    //a2:aをソートしたもの
     vector<int> a2(N);
-    for(int i=N-1;i>=0;--i){
+    for(int i=0;i<N;++i){
         a2[--sum[a[i]]]=a[i];
     }
     a=a2;
 }
 
 int main(void){
-    int N;
-    cin>>N;
-    vector<int> a(N);
-    for(int i=0;i<N;i++)cin>>a[i];
+    int n;
+    cin>>n;
+    vector<int> a(n);
+    REP(i,n)cin>>a[i];
     BucketSort(a);
+    cout<<"Sorted Array -> ";
+    REP(i,n-1){
+        cout<<a[i]<<", ";
+    }
+    cout<<a[n-1]<<endl;
 }

@@ -22,7 +22,10 @@
         "functional": "cpp",
         "unordered_map": "cpp",
         "unordered_set": "cpp",
-        "*.tcc": "cpp"
+        "*.tcc": "cpp",
+        "__split_buffer": "cpp",
+        "forward_list": "cpp",
+        "queue": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
