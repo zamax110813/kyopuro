@@ -16,6 +16,18 @@ typedef long long ll;
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
+
+
 int main(void){
-    
+    int n;
+    cin>>n;
+    vector<int> a(n);
+    REP(i,n)cin>>a[i];
+    vector<int> flower(101010,0);
+    int ans=0;
+    REP(i,n){
+        if(flower[a[i]]>0)ans++;
+        flower[a[i]]++;
+    }
+    cout<<ans<<endl;
 }

@@ -1,74 +1,41 @@
 #include<bits/stdc++.h>
+#include<atcoder/all>
+using namespace atcoder;
 using namespace std;
 typedef long long ll;
+#define REP(i,n) for(ll i=0;i<(ll)n;i++)
+#define REPD(i,n) for(ll i=n-1;i>=0;i--)
+#define FOR(i,a,b) for(ll i=a;i<=(ll)b;i++)
+#define FORD(i,a,b) for(ll i=a;i>=(ll)b;i--)
+#define FORA(i,I) for(const auto& i:I)
+#define ALL(x) x.begin(),x.end()
+#define SIZE(x) ll(x.size())
+#define F first
+#define S second
 
-struct Graph{
-    struct Edge{
-        int rev,from,to,cap;
-        Edge(int r,int f,int t,int c):rev(r),from(f),to(t),cap(c){};
-    };
-    vector<vector<Edge>> list;
-    Graph(int N=0):list(N){}
-
-    size_t size(){
-        return list.size();
-    }
-
-    vector<Edge> &operator [] (int i){
-        return list[i];
-    }
-
-    Edge& redge(const Edge &e){
-        return list[e.to][e.rev];
-    }
-
-    void run_flow(Edge &e,int f){
-        e.cap-=f;
-        redge(e).cap+=f;
-    }
-
-    void addedge(int from,int to,int cap){
-        int fromrev=(int)list[from].size();
-        int torev=(int)list[to].size();
-        list[from].push_back(Edge(torev,from,to,cap));
-        list[to].push_back(Edge(fromrev,to,from,0));
-    }
-};
-
-struct FordFulkerson{
-    static const int INF=1<<30;
-    vector<bool> seen;
-    FordFulkerson(){}
-
-    //残余グラフ上でs-t
-    int fodfs(Graph &G,int v,int t,int f){
-        if(v==t)return f;
-
-        seen[v]=true;
-        for(auto &e:G[v]){
-            if(seen[e.to])continue;
-            if(e.cap==0)continue;
-            int flow=fodfs(G,e.to,t,min(f,e.cap));
-            if(flow==0)continue;
-            G.run_flow(e,flow);
-            return flow;
-        }
-        return 0;
-    }
-
-    int solve(Graph &G,int s,int t){
-        int res=0;
-        while(true){
-            seen.assign((int)G.size(),0);
-            int flow=fodfs(G,s,t,INF);
-            if (flow==0)return res;
-            res+=flow;
-        }
-        return 0;
-    }
-};
+template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
+template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
 int main(void){
-
+    pair<int,int> ta,tb;
+    int T,V;
+    cin>>ta.F>>ta.S>>tb.F>>tb.S>>T>>V;
+    int n;
+    cin>>n;
+    vector<pair<int,int>> cord(n);
+    REP(i,n){
+        cin>>cord[i].F>>cord[i].S;
+    }
+    double time=T*V;
+    bool cheat=false;
+    REP(i,n){
+        double dist=0;
+        int xdiff=cord[i].F-ta.F,ydiff=cord[i].S-ta.S;
+        dist+=sqrt(xdiff*xdiff+ydiff*ydiff);
+        xdiff=tb.F-cord[i].F,ydiff=tb.S-cord[i].S;
+        dist+=sqrt(xdiff*xdiff+ydiff*ydiff);
+        if(dist<=time)cheat=true;
+    }
+    if(cheat)cout<<"YES"<<endl;
+    else cout<<"NO"<<endl;
 }
-

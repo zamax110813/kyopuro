@@ -17,5 +17,7 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; }
 
 int main(void){
-    
+    double H;
+    cin>>H;
+    cout<<fixed<<setprecision(7)<<sqrt(H)*sqrt(12800000+H)<<endl;
 }
