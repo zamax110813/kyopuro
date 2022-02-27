@@ -17,6 +17,23 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-    
+   int q;
+   cin>>q;
+   multiset<int> set;
+   REP(i,q){
+       int type;
+       cin>>type;
+       if(type==1){
+           ll x;
+           cin>>x;
+           set.insert(x);
+       }else if(type==2){
+           ll x,k;
+           cin>>x>>k;
+           auto iter=upper_bound(ALL(set),x);
+           for(int j=0;j<k;k++){
+               if(iter==set.begin())
+           }
+       }
+   }
 }
-

@@ -32,7 +32,7 @@ void dfs2(const Graph &G,int v,vector<pair<int,int>> &minmax,int p=-1){
     for(auto nv:G[v]){
         if(nv==p)continue;
         chmin(min,minmax[nv].first);
-        chmin(max,minmax[nv].second);
+        chmax(max,minmax[nv].second);
     }
     minmax[v].first=min;
     minmax[v].second=max;

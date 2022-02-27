@@ -19,4 +19,3 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 int main(void){
     
 }
-
