@@ -16,38 +16,26 @@ typedef long long ll;
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
-using Edge=pair<int,ll>;
-using Graph=vector<vector<Edge>>;
-
-void dfs(const Graph & G,int v,int p,ll sum,vector<ll> &dist){
-    dist[v]=sum;
-    for(auto nv:G[v]){
-        if(nv.first==p)continue;
-        dfs(G,nv.first,v,sum+nv.second,dist);
-    }
-}
-
 int main(void){
     int n;
-    cin>>n;
-    Graph G(n);
-    REP(i,n-1){
-        ll a,b,c;
-        cin>>a>>b>>c;
-        a--;b--;
-        G[a].push_back({b,c});
-        G[b].push_back({a,c});
+    ll k;
+    cin>>n>>k;
+    vector<ll> a(n);
+    REP(i,n)cin>>a[i];
+    vector<vector<ll>> dp(40,vector<ll>(n+1,0));
+    REP(i,n)dp[0][i]=a[i];
+    REP(i,39){
+        REP(j,n){
+            dp[i+1][j]=dp[i][j]+dp[i][(j+dp[i][j])%n];
+        }
     }
-    int q,k;
-    cin>>q>>k;
-    k--;
-    vector<ll> dist(n,0);
-    dfs(G,k,-1,0,dist);
-    REP(i,q){
-        int x,y;
-        cin>>x>>y;
-        x--;y--;
-        cout<<dist[x]+dist[y]<<endl;
+    ll ans=0;
+    for(int i=0;i<40;i++){
+        if(k&1){
+            ans+=dp[i][ans%n];
+        }
+        k=(k>>1);    //右シフト(1/2してる)
     }
+    cout<<ans<<endl;
+    return 0;
 }
-

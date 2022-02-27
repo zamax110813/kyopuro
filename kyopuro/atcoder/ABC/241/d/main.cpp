@@ -19,7 +19,7 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 int main(void){
    int q;
    cin>>q;
-   multiset<int> set;
+   multiset<ll> set;
    REP(i,q){
        int type;
        cin>>type;
@@ -30,10 +30,25 @@ int main(void){
        }else if(type==2){
            ll x,k;
            cin>>x>>k;
-           auto iter=upper_bound(ALL(set),x);
-           for(int j=0;j<k;k++){
-               if(iter==set.begin())
+           auto iter=set.upper_bound(x);
+           while(k){
+               if(iter==set.begin())break;
+               iter--;
+               k--;
            }
+           if(k==0)cout<<*iter<<endl;
+           else cout<<-1<<endl;
+       }else if(type==3){
+           ll x,k;
+           cin>>x>>k;
+           auto iter=set.lower_bound(x);
+           for(int j=0;j<k-1;j++){
+               if(iter==set.end())break;
+               iter++;
+           }
+           if(iter==set.end())cout<<-1<<endl;
+           else cout<<*iter<<endl;
        }
    }
+   return 0;
 }
