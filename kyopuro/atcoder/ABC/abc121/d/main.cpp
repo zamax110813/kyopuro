@@ -16,6 +16,17 @@ typedef long long ll;
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
+ll oddsolve(ll x){
+    return (x+1)/2%2;
+}
+
+ll solve(ll x){
+    if(x%2==1)return oddsolve(x);
+    else return (x+1)^oddsolve(x+1);
+}
+
 int main(void){
-    
+    ll a,b;
+    cin>>a>>b;
+    cout<<(solve(a-1)^solve(b))<<endl;
 }
