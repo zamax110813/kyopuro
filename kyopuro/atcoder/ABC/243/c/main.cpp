@@ -17,21 +17,35 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
+    int n;
+    cin>>n;
+    vector<pair<int,int>> cord(n);
+    REP(i,n){
+        cin>>cord[i].F>>cord[i].S;
+    }
+    map<int,int> map;
     string S;
     cin>>S;
-    ll ans=0;
-    for(int i=0;i<(1<<(S.size()-1));i++){
-        int l=0,r=1;
-        for(int j=0;j<S.size()-1;j++){
-            if(i&(1<<j)){
-                ans+=stoll(S.substr(l,r-l));
-                l=r;
-                r++;
-            }else{
-                r++;
+    REP(i,n){
+        if(S[i]=='L'){
+            if(map.find(cord[i].S)==map.end()){
+                map[cord[i].S]=cord[i].F;
+                continue;
+            }
+            if(map[cord[i].S]<cord[i].F)map[cord[i].S]=cord[i].F;
+        }
+    }
+    REP(i,n){
+        if(S[i]=='R'){
+            auto iter=map.find(cord[i].S);
+            if(iter!=map.end()){
+                if(iter->second>cord[i].F){
+                    cout<<"Yes"<<endl;
+                    return 0;
+                }
             }
         }
-        ans+=stoll(S.substr(l));
     }
-    cout<<ans<<endl;
+    cout<<"No"<<endl;
+
 }

@@ -16,22 +16,28 @@ typedef long long ll;
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
+const long long INF=1LL<<60;
+
 int main(void){
-    string S;
-    cin>>S;
-    ll ans=0;
-    for(int i=0;i<(1<<(S.size()-1));i++){
-        int l=0,r=1;
-        for(int j=0;j<S.size()-1;j++){
-            if(i&(1<<j)){
-                ans+=stoll(S.substr(l,r-l));
-                l=r;
-                r++;
-            }else{
-                r++;
-            }
-        }
-        ans+=stoll(S.substr(l));
+    int n;
+    cin>>n;
+    vector<int> A(n);
+    REP(i,n){
+        cin>>A[i];
     }
-    cout<<ans<<endl;
+    sort(ALL(A));
+    set<int> S;
+    REP(i,n){
+        int tmp=A[i];
+        while(tmp>0){
+            if(S.find(tmp)!=S.end())break;
+            if(tmp%2==1){
+                S.insert(A[i]);
+                break;
+            }
+            tmp/=2;
+        }
+    }
+    cout<<S.size()<<endl;
+
 }

@@ -32,7 +32,9 @@
         "filesystem": "cpp",
         "regex": "cpp",
         "system_error": "cpp",
-        "modint": "cpp"
+        "modint": "cpp",
+        "stack": "cpp",
+        "random": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
