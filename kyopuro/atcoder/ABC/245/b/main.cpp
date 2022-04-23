@@ -18,7 +18,17 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 int main(void){
     int n;
-    string s;
-    cin>>n>>s;
-    cout<<s[n-1]<<endl;
+    cin>>n;
+    vector<int> a(n);
+    REP(i,n)cin>>a[i];
+    vector<bool> used(2001,false);
+    REP(i,n){
+        used[a[i]]=true;
+    }
+    REP(i,2001){
+        if(!used[i]){
+            cout<<i<<endl;
+            return 0;
+        }
+    }
 }

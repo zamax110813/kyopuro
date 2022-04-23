@@ -16,6 +16,21 @@ typedef long long ll;
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
+int dx[4]={1,0,-1,0},dy[4]={0,-1,0,1};
+
 int main(void){
-    
+    int n;
+    string t;
+    cin>>n>>t;
+    int x=0,y=0;
+    int dir=0;
+    for(int i=0;i<t.size();i++){
+        if(t[i]=='R'){
+            dir=(dir+1)%4;
+        }else{
+            x+=dx[dir];
+            y+=dy[dir];
+        }
+    }
+    cout<<x<<" "<<y<<endl;
 }

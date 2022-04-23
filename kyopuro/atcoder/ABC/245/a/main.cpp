@@ -17,8 +17,13 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-    int n;
-    string s;
-    cin>>n>>s;
-    cout<<s[n-1]<<endl;
+    int a,b,c,d;
+    cin>>a>>b>>c>>d;
+    if(a*60*60+b*60<c*60*60+d*60+1){
+        cout<<"Takahashi"<<endl;
+        return 0;
+    }else{
+        cout<<"Aoki"<<endl;
+        return 0;
+    }
 }

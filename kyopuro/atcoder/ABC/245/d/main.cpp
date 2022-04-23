@@ -17,8 +17,15 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-    int n;
-    string s;
-    cin>>n>>s;
-    cout<<s[n-1]<<endl;
+    int n,m;
+    cin>>n>>m;
+    vector<int> a(n+1),b(m+1),c(n+m+1);
+    REP(i,n+1)cin>>a[i];
+    REP(i,n+m+1)cin>>c[i];
+    for(int i=m;i>=0;i--){
+        b[i]=c[n+i]/a[n];
+        for(int j=n;j>=0;j--)c[i+j]-=a[j]*b[i];
+    }
+    for(int i=0;i<m;i++)cout<<b[i]<<" ";
+    cout<<b[m]<<endl;
 }
