@@ -16,9 +16,25 @@ typedef long long ll;
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
+const long long INF=1LL<<60;
+
+using mint=modint998244353;
+
 int main(void){
-    int n;
-    string s;
-    cin>>n>>s;
-    cout<<s[n-1]<<endl;
+    int n,m,K;
+    cin>>n>>m>>K;
+    vector<vector<mint>> dp(n+1,vector<mint>(K+1,0));
+    dp[0][0]=1;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<K;j++){
+            for(int k=1;k<=m;k++){
+                if(j+k<=K){
+                    dp[i+1][j+k]+=dp[i][j];
+                }
+            }
+        }
+    }
+    mint ans=0;
+    for(int k=1;k<=K;k++)ans+=dp[n][k];
+    cout<<ans.val()<<endl;
 }

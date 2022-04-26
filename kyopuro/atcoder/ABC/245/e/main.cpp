@@ -17,8 +17,29 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-    int n;
-    string s;
-    cin>>n>>s;
-    cout<<s[n-1]<<endl;
+    int n,m;
+    cin>>n>>m;
+    vector<pair<int,int>> p(n),q(m);
+    REP(i,n)cin>>p[i].first;
+    REP(i,n)cin>>p[i].second;
+    REP(i,m)cin>>q[i].first;
+    REP(i,m)cin>>q[i].second;
+    sort(p.rbegin(),p.rend());
+    sort(q.rbegin(),q.rend());
+    int qi=0;
+    multiset<int> s;
+    for(int i=0;i<n;i++){
+        auto [x,y]=p[i];
+        while(qi<m&&q[qi].first>=x){
+            s.insert(q[qi].second);
+            qi++;
+        }
+        auto iter=s.lower_bound(y);
+        if(iter==s.end()){
+            cout<<"No"<<endl;
+            return 0;
+        }
+        s.erase(iter);
+    }
+    cout<<"Yes"<<endl;
 }

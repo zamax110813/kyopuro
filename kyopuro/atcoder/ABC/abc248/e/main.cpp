@@ -16,9 +16,17 @@ typedef long long ll;
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
+const long long INF=1LL<<60;
+
 int main(void){
-    int n;
-    string s;
-    cin>>n>>s;
-    cout<<s[n-1]<<endl;
+    int n,k;
+    cin>>n>>k;
+    if(k==1){
+        cout<<"Infinity"<<endl;
+        return 0;
+    }
+    vector<pair<int,int>> idx(n);
+    REP(i,n)cin>>idx[i].first>>idx[i].second;
+    
 }
+

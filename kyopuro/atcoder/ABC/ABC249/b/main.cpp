@@ -17,8 +17,21 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-    int n;
     string s;
-    cin>>n>>s;
-    cout<<s[n-1]<<endl;
+    cin>>s;
+    bool flagU=false,flagL=false;
+    set<char> set;
+    for(int i=0;i<s.size();i++){
+        if(islower((char)s[i]))flagL=true;
+        else flagU=true;
+        for(int j=0;j<s.size();j++){
+            if(i==j)continue;
+            if(s[i]==s[j]){
+                cout<<"No"<<endl;
+                return 0;
+            }
+        }
+    }
+    if(flagL&&flagU)cout<<"Yes"<<endl;
+    else cout<<"No"<<endl;
 }

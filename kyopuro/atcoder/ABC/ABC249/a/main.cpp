@@ -17,8 +17,19 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-    int n;
-    string s;
-    cin>>n>>s;
-    cout<<s[n-1]<<endl;
+    int A,B,C,D,E,F,X;
+    cin>>A>>B>>C>>D>>E>>F>>X;
+    int taka=A+C;
+    int ao=D+F;
+    int ans_t=(X/taka)*B*A;
+    int ans_a=(X/ao)*E*D;
+    ans_t+=min((X%taka),A)*B;
+    ans_a+=min((X%ao),D)*E;
+    if(ans_t==ans_a){
+        cout<<"Draw"<<endl;
+    }else if(ans_t>ans_a){
+        cout<<"Takahashi"<<endl;
+    }else{
+        cout<<"Aoki"<<endl;
+    }
 }

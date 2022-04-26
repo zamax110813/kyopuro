@@ -16,9 +16,12 @@ typedef long long ll;
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
+const long long INF=1LL<<60;
+
 int main(void){
-    int n;
     string s;
-    cin>>n>>s;
-    cout<<s[n-1]<<endl;
+    cin>>s;
+    vector<bool> exist(10,false);
+    REP(i,9)exist[s[i]-'0']=true;
+    REP(i,10)if(!exist[i])cout<<i<<endl;
 }

@@ -17,5 +17,27 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-    
+    int n;
+    cin>>n;
+    vector<bool> used(2*n+1,false);
+    cout<<1<<endl;
+    cout<<flush;
+    used[0]=true;
+    while(1){
+        int a;
+        cin>>a;
+        if(a==0){
+            return 0;
+        }
+        a-=1;
+        used[a]=true;
+        for(int i=0;i<used.size();i++){
+            if(!used[i]){
+                cout<<i+1<<endl;
+                cout<<flush;
+                used[i]=true;
+                break;
+            }
+        }
+    }
 }

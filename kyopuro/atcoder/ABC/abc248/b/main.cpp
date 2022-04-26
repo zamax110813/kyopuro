@@ -16,9 +16,15 @@ typedef long long ll;
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
+const long long INF=1LL<<60;
+
 int main(void){
-    int n;
-    string s;
-    cin>>n>>s;
-    cout<<s[n-1]<<endl;
+    ll a,b,k;
+    cin>>a>>b>>k;
+    int ans=0;
+    while(a<b){
+        a*=k;
+        ans++;
+    }
+    cout<<ans<<endl;
 }
