@@ -25,6 +25,18 @@
             ]
         },
         {
+            "label": "build main.cpp",
+            "type": "shell",
+            "command": "g++",
+            "args":[
+                "-O2","-std=c++14","-o","${fileDirname}/a.out","${file}",
+            ],
+            "group":{
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
             "label": "submit",
             "type": "shell",
             "options": {
