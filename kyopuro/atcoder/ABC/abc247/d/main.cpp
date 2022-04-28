@@ -17,5 +17,40 @@ template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } retu
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
 int main(void){
-
+    int q;
+    cin>>q;
+    deque<pair<ll,ll>> deque;
+    for(int i=0;i<q;i++){
+        int query;
+        cin>>query;
+        if(query==1){
+            ll x,c;
+            cin>>x>>c;
+            deque.push_back(make_pair(x,c));
+        }else{
+            ll c;
+            cin>>c;
+            ll ans=0;
+            while(1){
+                ll num=deque.front().S;
+                ll x=deque.front().F;
+                if(num>c){
+                    ans+=c*x;
+                    ll cnt=num-c;
+                    deque.pop_front();
+                    deque.push_front(make_pair(x,cnt));
+                    break;
+                }else if(num==c){
+                    ans+=c*x;
+                    deque.pop_front();
+                    break;
+                }else{
+                    ans+=num*x;
+                    c-=num;
+                    deque.pop_front();
+                }
+            }
+            cout<<ans<<endl;
+        }
+    }
 }
