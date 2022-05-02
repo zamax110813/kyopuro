@@ -18,22 +18,11 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 
 const long long INF=1LL<<60;
 
-const int MAX=2000000;
-
 int main(void){
-	int n;
-    cin>>N;
-    vector<int> cnt(MAX+1,0);
-    REP(i,n){
-        int a;
-        cin>>a;
-        cnt[a]++;
-    }
-    ll ans=0;
-    for(int q=1;q<=MAX;q++){
-        for(int r=1;r<=(MAX/q);r++){
-            ans+=(ll)cnt[q]*cnt[r]*cnt[q*r];
-        }
-    }
-    cout<<ans<<endl;    
+	string s;
+	cin>>s;
+	int k;
+	cin>>k;
+	
 }
+
