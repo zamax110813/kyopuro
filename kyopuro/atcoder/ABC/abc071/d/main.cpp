@@ -16,26 +16,37 @@ typedef long long ll;
 template<class T>bool chmax(T &a, const T &b) { if (a<b) { a=b; return 1; } return 0; }
 template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } return 0; } 
 
-ll func(ll a,ll b){
-    return (a*a*a+a*a*b+a*b*b+b*b*b);
-}
+const long long INF=1LL<<60;
+
+const ll MOD=1000000007;
 
 int main(void){
-    ll n;
+    int n;
     cin>>n;
-    ll ans=8*1e18;
-    for(int a=0;a<=1000000;a++){
-        ll r=1000000;
-        ll l=-1;
-        while(r-l>1){
-            ll mid=(r+l)/2;
-            if(func(a,mid)>=n){
-                r=mid;
+    string s1,s2;
+    cin>>s1>>s2;
+    ll ans=1;
+    int i=0;
+    while(i<n){
+        if(i==0){
+            if(s1[i]==s2[i]){
+                ans*=3;
+                i++;
+            }
+            else{
+                ans*=6;
+                i+=2;
+            }
+        }else{
+            if(s1[i]==s2[i]){
+                if(s1[i-1]==s2[i-1])ans=(ans*2)%MOD;
+                i++;
             }else{
-                l=mid;
+                if(s1[i-1]==s2[i-1])ans=(ans*2)%MOD;
+                else ans=(ans*3)%MOD;
+                i+=2;
             }
         }
-        ans=min(func(a,r),ans);
     }
     cout<<ans<<endl;
 }
