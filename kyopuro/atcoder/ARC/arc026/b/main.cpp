@@ -21,5 +21,7 @@ const long long INF=1LL<<60;
 int main(void){
 	int n;
 	cin>>n;
-
+	vector<int> divisor;
+	for(int i=0;i*i<=n;i++){
+	}
 }
