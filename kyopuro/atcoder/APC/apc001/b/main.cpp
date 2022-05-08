@@ -19,17 +19,5 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 const long long INF=1LL<<60;
 
 int main(void){
-	ll n;
-	cin>>n;
-    ll sum=0;
-	for(ll i=1;i*i<=n;i++){
-        if(n%i==0){
-            sum+=i;
-            if(i*i!=n)sum+=(n/i);
-        }
-    }
-    if(sum==2*n)cout<<"Perfect"<<endl;
-    else if(sum>2*n)cout<<"Abundant"<<endl;
-    else cout<<"Deficient"<<endl;
-
+    
 }
