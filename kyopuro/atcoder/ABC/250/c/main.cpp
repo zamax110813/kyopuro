@@ -19,31 +19,27 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 const long long INF=1LL<<60;
 
 int main(void){
-    int n;
-    cin>>n;
-    int left=0,right=n-1;
-    string r,l,m;
-    for(int i=0;i<20;i++){
-        int mid=(right+left)/2;
-        if(i==0){
-            cout<<left<<endl;
-            cin>>l;
-            cout<<right<<endl;
-            cin>>r;
-            if(l=="Vacant"||r=="Vacant")return 0;
+    int n,q;
+    cin>>n>>q;
+    vector<int> ans;
+    vector<int> idx(200010);
+    REP(i,n+1)idx[i]=i-1;
+    REP(i,n)ans.push_back(i+1);
+    REP(i,q){
+        int x;
+        cin>>x;
+        if(idx[x]==n-1){
+            int tmp=ans[idx[x]-1];
+            swap(ans[idx[x]],ans[idx[x]-1]);
+            swap(idx[x],idx[tmp]);
         }else{
-            cout<<mid<<endl;
-            flush(cout);
-            cin>>m;
-            if(m=="Vacant")return 0;
-            else if((m==l&&(mid-left)%2==1)||(m!=l&&(mid-left)%2==0)){
-                right=mid;
-                r=m;
-            }
-            else if((m==r&&(right-mid)%2==1)||(m!=r&&(right-mid)%2==0)){
-                left=mid;
-                l=m;
-            }
+            int tmp=ans[idx[x]+1];
+            swap(ans[idx[x]],ans[idx[x]+1]);
+            swap(idx[x],idx[tmp]);
         }
+    }
+    REP(i,n){
+        if(i==n-1)cout<<ans[i]<<endl;
+        else cout<<ans[i]<<" ";
     }
 }
