@@ -19,10 +19,8 @@ template<class T>bool chmin(T &a, const T &b) { if (b<a) { a=b; return 1; } retu
 const long long INF=1LL<<60;
 
 int main(void){
-	string s;
-	cin>>s;
-	int k;
-	cin>>k;
-	
-}
-
+    string s;
+    cin>>s;
+    int k;
+    cin>>k;
+   } 
