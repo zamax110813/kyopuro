@@ -23,4 +23,13 @@ int main(void){
     cin>>s;
     int k;
     cin>>k;
-   } 
+	vector<string> S;
+	for(int i=0;i<s.size();i++){
+		for(int j=1;j<6;j++){
+			S.push_back(s.substr(i,j));
+		}
+	}
+	sort(ALL(S));
+	S.erase(unique(ALL(S)),S.end());
+	cout<<S[k-1]<<endl;
+} 
