@@ -52,9 +52,40 @@ int main(void){
     int q;
     cin>>q;
     vector<int> query(q);
-    for(int i=0;i<q;i++){
-
+    vector<int> connect(e,1);
+    for(auto &nx:query){
+        cin>>nx;
+        nx--;
+        connect[nx]=0;
     }
-    
+    UnionFind uf(n+m);
+    vector<int> wired(n+m,0);
+    for(int i=n;i<n+m;i++)wired[i]=1;
+    int wcity=0;
+    for(int i=0;i<e;i++){
+        if(!connect[i])continue;
+        if(uf.issame(u[i],v[i]))continue;
+        int ul=uf.root(u[i]);
+        int vl=uf.root(v[i]);
+        if(wired[ul]==1&&wired[vl]==0)wcity+=uf.size(v[i]);
+        if(wired[ul]==0&&wired[vl]==1)wcity+=uf.size(u[i]);
+        uf.unite(u[i],v[i]);
+        wired[uf.root(u[i])]=max(wired[ul],wired[vl]);
+    }
+    vector<int> ans;
+    for(int i=q-1;i>=0;i--){
+        int e_idx=query[i];
+        ans.push_back(wcity);
+        if(uf.issame(u[e_idx],v[e_idx]))continue;
+        int ul=uf.root(u[e_idx]);
+        int vl=uf.root(v[e_idx]);
+        if(wired[ul]==1&&wired[vl]==0)wcity+=uf.size(v[e_idx]);
+        if(wired[ul]==0&&wired[vl]==1)wcity+=uf.size(u[e_idx]);
+        uf.unite(u[e_idx],v[e_idx]);
+        wired[uf.root(u[e_idx])]=max(wired[ul],wired[vl]);
+    }
+
+    for(int i=q-1;i>=0;i--)cout<<ans[i]<<endl;
+
 
 }
